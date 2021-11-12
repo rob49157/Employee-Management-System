@@ -1,0 +1,25 @@
+{
+  "name": "Employee-Management-System",
+  "version": "1.0.0",
+  "description": "GIVEN a command-line application that accepts user input",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rob49157/Employee-Management-System.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rob49157/Employee-Management-System/issues"
+  },
+  "homepage": "https://github.com/rob49157/Employee-Management-System#readme"
+}
