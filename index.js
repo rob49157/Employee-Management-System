@@ -1,14 +1,36 @@
-const bodyParser = require("body-parser")
-const inquirer = require("inquirer")
+const bodyParser = require(`body-parser`)
+const inquirer = require(`inquirer`)
+const express = require(`express`);
 const app = express()
 const PORT = process.env.PORT || 3000;
 const router =express.Router()
-const fs = require("fs");
-const e = require("express");
+const fs = require(`fs`);
+const { deserialize } = require("v8");
+const mysql = require('mysql2');
+// const Connection = require("mysql2/typings/mysql/lib/Connection");
+
+
+
+// Connect to database
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      // MySQL username,
+      user: 'root',
+      // MySQL password
+      password: 'dal123456789+',
+      database: 'deparments_db'
+    },
+    console.log(`Connected to the deparments_db database.`)
+  );
+
 
 
 
 employee_table= []
+
+
+// questions
 
 employeeoptions()
 function employeeoptions(){
@@ -19,8 +41,12 @@ function employeeoptions(){
         choices:["add department", "add role", 'add employee']
 
     })
-.then(function(department){
-    if (role === "add department") {
+.then(function(department,{department_name,ID}){
+    db.query(`INSERT INTO Deparment(department_name) VALUES ?`,("department_name","ID"),
+        function(err,results){
+            if(err) throw err
+        })
+    if (department === "add department") {
         inquirer.prompt([
             {type:'input',
             message:"which department:",
@@ -47,7 +73,7 @@ function employeeoptions(){
                 return
             }
         })
-    }else if (role === "add role"){
+    }else if (department === "add role"){
         inquirer.prompt([
             {type:'input',
             message:"What is the name of the role?",
@@ -83,7 +109,7 @@ function employeeoptions(){
                 return
             }
         })
-    }else if (role === "add employee"){
+    }else if (department === "add employee"){
         inquirer.prompt([
             {type:'input',
             message:"What is the employees first name?",
@@ -130,6 +156,9 @@ function employeeoptions(){
     
         
     }
+})
+}
+
            
            
         
