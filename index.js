@@ -34,28 +34,28 @@ const db = mysql.createConnection(
 
 employeeoptions()
 function employeeoptions(){
-    inquirer.prompt({
+    inquirer.prompt([{
         type:"list",
         message:"what would you like to do?",
-        name:"role",
+        name:"type",
         choices:["add department", "add role", 'add employee']
 
-    })
-.then(function(department1){
-    db.query(`INSERT INTO Deparment(department_name) VALUES  ?`,(`department`),
-        function(err,results){
-            if(err) throw err
-        })
-    if (department1 === "add department") {
+    }])
+.then(function({type}){
+    // db.query(`INSERT INTO Deparment(department_name) VALUES  ?`,(`department`),
+    //     function(err,results){
+    //         if(err) throw err
+    //     })
+    if (type === "add department") {
         inquirer.prompt([
             {type:'input',
             message:"which department:",
             name:'department'},
 
-            {type:"list",
-            message:"what would you like to do?",
-            name:"role",
-            choices:["add department", "add role", 'add employee']},
+            // {type:"list",
+            // message:"what would you like to do?",
+            // name:"role",
+            // choices:["add department", "add role", 'add employee']},
             
             {type:"list",
             message: " would you like to add more?",
@@ -63,17 +63,18 @@ function employeeoptions(){
             name:'addmore'
             }
 
-        ]).then(function(){
-            let adddepartment = new adddepartment
-            db.push(adddepartment)
-
+        ]).then(function({department,addmore,addrole}){
+            db.query(`INSERT INTO Department(department_name) VALUES  (?)`,(department),
+            function(err,results){
+                if(err) throw err
+            })
             if(addmore === `yes`){
                 employeeoptions()
             }else{
                 return
             }
         })
-    }else if (department1 === "add role"){
+    }else if (type === "add role"){
         inquirer.prompt([
             {type:'input',
             message:"What is the name of the role?",
@@ -109,7 +110,7 @@ function employeeoptions(){
                 return
             }
         })
-    }else if (department1 === "add employee"){
+    }else if (type === "add employee"){
         inquirer.prompt([
             {type:'input',
             message:"What is the employees first name?",

@@ -7,7 +7,7 @@ USE deparments_db;
 
 CREATE TABLE Department(
     department_name VARCHAR(50) NOT NULL,
-    ID INT NOT NULL,
+    ID int(11) NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (ID)
 );
 CREATE TABLE roles(
