@@ -13,21 +13,21 @@ const mysql = require('mysql2');
 
 // Connect to database
 const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // MySQL username,
-      user: 'root',
-      // MySQL password
-      password: 'dal123456789+',
-      database: 'deparments_db'
-    },
-    console.log(`Connected to the deparments_db database.`)
-  );
+     {
+       host: 'localhost',
+       // MySQL username,
+       user: 'root',
+        //MySQL password
+       password: 'dal123456789+',
+       database: 'deparments_db'
+     },
+     console.log(`Connected to the deparments_db database.`)
+   );
 
 
 
 
-employee_table= []
+
 
 
 // questions
@@ -41,12 +41,12 @@ function employeeoptions(){
         choices:["add department", "add role", 'add employee']
 
     })
-.then(function(department,{department_name,ID}){
-    db.query(`INSERT INTO Deparment(department_name) VALUES ?`,("department_name","ID"),
+.then(function(department1){
+    db.query(`INSERT INTO Deparment(department_name) VALUES  ?`,(`department`),
         function(err,results){
             if(err) throw err
         })
-    if (department === "add department") {
+    if (department1 === "add department") {
         inquirer.prompt([
             {type:'input',
             message:"which department:",
@@ -65,7 +65,7 @@ function employeeoptions(){
 
         ]).then(function(){
             let adddepartment = new adddepartment
-            employee_table.push(adddepartment)
+            db.push(adddepartment)
 
             if(addmore === `yes`){
                 employeeoptions()
@@ -73,7 +73,7 @@ function employeeoptions(){
                 return
             }
         })
-    }else if (department === "add role"){
+    }else if (department1 === "add role"){
         inquirer.prompt([
             {type:'input',
             message:"What is the name of the role?",
@@ -101,7 +101,7 @@ function employeeoptions(){
 
         ]).then(function(){
             let addrole= new addrole
-            employee_table.push(addrole)
+            db.push(addrole)
 
             if (addmore=== `yes`){
                 employeeoptions()
@@ -109,7 +109,7 @@ function employeeoptions(){
                 return
             }
         })
-    }else if (department === "add employee"){
+    }else if (department1 === "add employee"){
         inquirer.prompt([
             {type:'input',
             message:"What is the employees first name?",
@@ -143,7 +143,7 @@ function employeeoptions(){
 
         ]).then(function(){
             let addemployee= new addemployee
-            employee_table.push(addemployee)
+            db.push(addemployee)
 
             if (addmore=== `yes`){
                 employeeoptions()
