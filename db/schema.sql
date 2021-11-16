@@ -12,22 +12,27 @@ CREATE TABLE Department(
 );
 
 CREATE TABLE roles(
-    ID INT NOT NULL,
+    ID INT NOT NULL  AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(50),
     Salary DECIMAL,
-    deparments_id INT NOT NULL,
-    FOREIGN KEY (deparments_id),
+    deparments_id INT ,
+    FOREIGN KEY (deparments_id)
     REFERENCES Department(ID)
+    ON DELETE SET NULL
 );
     
 CREATE TABLE employee(
     
-    ID INT NOT NULL,
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_names VARCHAR(30),
     last_names VARCHAR(30),
-    role_id INT NOT NULL,
+    role_id INT ,
     managers_ID INT,
-    FOREIGN KEY (ID),
-    REFERENCES employee(ID)
+    FOREIGN KEY (managers_ID)
+    REFERENCES roles(ID)
+    ON DELETE SET NULL
 );
+
+
+
 

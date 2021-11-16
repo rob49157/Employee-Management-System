@@ -1,8 +1,8 @@
-INSERT INTO Department(id,department_name)
+INSERT INTO Department(ID,department_name)
 VALUES()
 
 
-INSERT INTO roles(id,Title,Salary,deparments_id)
+INSERT INTO roles(ID,Title,Salary,deparments_id)
 VALUES()
 
 
