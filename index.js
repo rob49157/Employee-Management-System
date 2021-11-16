@@ -86,7 +86,7 @@ function employeeoptions(){
             }
 
 
-        ]).then(function(rolename,salary,departmentlocation, addmore){
+        ]).then(function({rolename,salary,departmentlocation, addmore}){
             db.query(`INSERT INTO roles(Title,Salary,deparments_id) VALUES  (?)`,(rolename,salary,departmentlocation),
             function(err,results){
                 if(err) throw err
@@ -131,7 +131,7 @@ function employeeoptions(){
             }
 
 
-        ]).then(function(first_names,last_names,role_id,managers_ID,addmore){
+        ]).then(function({first_names,last_names,role_id,managers_ID,addmore}){
             db.query(`INSERT INTO employee(first_names,last_names,role_id,managers_ID) VALUES  (?)`,(first_names,last_names,role_id,managers_ID),
             function(err,results){
                 if(err) throw err
