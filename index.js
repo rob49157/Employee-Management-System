@@ -25,11 +25,6 @@ const db = mysql.createConnection(
    );
 
 
-
-
-
-
-
 // questions
 
 employeeoptions()
@@ -42,20 +37,11 @@ function employeeoptions(){
 
     }])
 .then(function({type}){
-    // db.query(`INSERT INTO Deparment(department_name) VALUES  ?`,(`department`),
-    //     function(err,results){
-    //         if(err) throw err
-    //     })
     if (type === "add department") {
         inquirer.prompt([
             {type:'input',
             message:"which department:",
             name:'department'},
-
-            // {type:"list",
-            // message:"what would you like to do?",
-            // name:"role",
-            // choices:["add department", "add role", 'add employee']},
             
             {type:"list",
             message: " would you like to add more?",
@@ -63,7 +49,7 @@ function employeeoptions(){
             name:'addmore'
             }
 
-        ]).then(function({department,addmore,addrole}){
+        ]).then(function({department,addmore}){
             db.query(`INSERT INTO Department(department_name) VALUES  (?)`,(department),
             function(err,results){
                 if(err) throw err
@@ -100,9 +86,12 @@ function employeeoptions(){
             }
 
 
-        ]).then(function(){
-            let addrole= new addrole
-            db.push(addrole)
+        ]).then(function(rolename,salary,departmentlocation, addmore){
+            db.query(`INSERT INTO roles(Title,Salary,deparments_id) VALUES  (?)`,(rolename,salary,departmentlocation),
+            function(err,results){
+                if(err) throw err
+            })
+           
 
             if (addmore=== `yes`){
                 employeeoptions()
@@ -142,10 +131,11 @@ function employeeoptions(){
             }
 
 
-        ]).then(function(){
-            let addemployee= new addemployee
-            db.push(addemployee)
-
+        ]).then(function(first_names,last_names,role_id,managers_ID,addmore){
+            db.query(`INSERT INTO employee(first_names,last_names,role_id,managers_ID) VALUES  (?)`,(first_names,last_names,role_id,managers_ID),
+            function(err,results){
+                if(err) throw err
+            })
             if (addmore=== `yes`){
                 employeeoptions()
             }else{
