@@ -41,7 +41,8 @@ function employeeoptions(){
         inquirer.prompt([
             {type:'input',
             message:"which department:",
-            name:'department'},
+            name:'department'
+        },
             
             {type:"list",
             message: " would you like to add more?",
@@ -50,33 +51,33 @@ function employeeoptions(){
             }
 
         ]).then(function({department,addmore}){
-            db.query(`INSERT INTO Department(department_name) VALUES  (?)`,(department),
+            db.query(`INSERT INTO Department(name) VALUES  (?)`,(department),
             function(err,results){
                 if(err) throw err
             })
             if(addmore === `yes`){
                 employeeoptions()
             }else{
-                return
+                console.log('done')
             }
         })
     }else if (type === "add role"){
         inquirer.prompt([
             {type:'input',
             message:"What is the name of the role?",
-            name:"rolename",
+            name:"title"
 
             },
 
             {type:"input",
             message:"what is the salary of the role?",
-            name:"salary",
+            name:"salary"
 
             },
 
             {type:"input",
             message:"which department this role belongs too?",
-            name:"departmentlocation"
+            name:"department"
             },
 
             {type:"list",
@@ -84,44 +85,38 @@ function employeeoptions(){
             choices: [`yes`,`no`],
             name:'addmore'
             }
-
-
-        ]).then(function(rolename,salary,departmentlocation, addmore){
-            db.query(`INSERT INTO roles(Title,Salary,deparments_id) VALUES  (?)`,(rolename,salary,departmentlocation),
-            function(err,results){
-                if(err) throw err
-            })
-           
-
-            if (addmore=== `yes`){
+        ]).then(function({title,salary,department, addmore}){
+            console.log(title, salary, department)
+            db.query('insert into role set title = ?, salary=?, department_id=?',[title, salary, department])
+            if(addmore === `yes`){
                 employeeoptions()
             }else{
-                return
+                console.log('done')
             }
         })
     }else if (type === "add employee"){
         inquirer.prompt([
             {type:'input',
             message:"What is the employees first name?",
-            name:"firstname",
+            name:"first_name",
 
             },
 
             {type:"input",
             message:"what is the employees last name?",
-            name:"lastname",
+            name:"last_name",
 
             },
 
             {type:"input",
             message:"what is the employees role?",
-            name:"employees role"
+            name:"role_id"
             },
 
             {
             type:"input",
             message:"whos is the employees manager",
-            name:"employeesmanager",
+            name:"manager_id",
             },
 
             {type:"list",
@@ -131,21 +126,15 @@ function employeeoptions(){
             }
 
 
-        ]).then(function(first_names,last_names,role_id,managers_ID,addmore){
-            db.query(`INSERT INTO employee(first_names,last_names,role_id,managers_ID) VALUES  (?)`,(first_names,last_names,role_id,managers_ID),
-            function(err,results){
-                if(err) throw err
-            })
-            if (addmore=== `yes`){
+        ]).then(function({first_name,last_name,role_id,manager_id,addmore}){
+            db.query('insert into employee set first_name = ?, last_name=?, role_id=?, manager_id=?',[first_name, last_name, role_id, manager_id])
+            console.log(addmore)
+            if(addmore === `yes`){
                 employeeoptions()
             }else{
-                return
+                console.log('done')
             }
-        })
-            
-        
-    
-        
+        })   
     }
 })
 }

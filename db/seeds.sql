@@ -1,10 +1,10 @@
-INSERT INTO Department(ID,department_name)
+INSERT INTO Department(department_name)
 VALUES()
 
 
-INSERT INTO roles(ID,Title,Salary,deparments_id)
+INSERT INTO roles(Title,Salary,deparments_id)
 VALUES()
 
 
-INSERT INTO employee(ID,first_names,last_names,role_id,managers_ID)
+INSERT INTO employee(first_names,last_names,role_id,managers_ID)
 VALUES()
