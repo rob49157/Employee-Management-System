@@ -21,4 +21,4 @@ To make the app work i needed to have the following;
 - MySQL2, was used to keep data organized.
 
 ### video link
-
+ https://watch.screencastify.com/v/SDmYzkHrqzvTAJy9Q6O6 

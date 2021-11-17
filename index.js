@@ -76,7 +76,7 @@ function employeeoptions(){
             },
 
             {type:"input",
-            message:"which department this role belongs too?",
+            message:"which department this role belongs too (id)?",
             name:"department"
             },
 
@@ -109,13 +109,13 @@ function employeeoptions(){
             },
 
             {type:"input",
-            message:"what is the employees role?",
+            message:"what is the employees role(id)?",
             name:"role_id"
             },
 
             {
             type:"input",
-            message:"whos is the employees manager",
+            message:"whos is the employees manager(id)",
             name:"manager_id",
             },
 
