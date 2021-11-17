@@ -85,10 +85,23 @@ function employeeoptions(){
             choices: [`yes`,`no`],
             name:'addmore'
             }
+<<<<<<< HEAD
         ]).then(function({title,salary,department, addmore}){
             console.log(title, salary, department)
             db.query('insert into role set title = ?, salary=?, department_id=?',[title, salary, department])
             if(addmore === `yes`){
+=======
+
+
+        ]).then(function({rolename,salary,departmentlocation, addmore}){
+            db.query(`INSERT INTO roles(Title,Salary,deparments_id) VALUES  (?)`,(rolename,salary,departmentlocation),
+            function(err,results){
+                if(err) throw err
+            })
+           
+
+            if (addmore=== `yes`){
+>>>>>>> 3c0ee225621e6c2fc83aa0a54457bc9eada79e7f
                 employeeoptions()
             }else{
                 console.log('done')
@@ -126,10 +139,19 @@ function employeeoptions(){
             }
 
 
+<<<<<<< HEAD
         ]).then(function({first_name,last_name,role_id,manager_id,addmore}){
             db.query('insert into employee set first_name = ?, last_name=?, role_id=?, manager_id=?',[first_name, last_name, role_id, manager_id])
             console.log(addmore)
             if(addmore === `yes`){
+=======
+        ]).then(function({first_names,last_names,role_id,managers_ID,addmore}){
+            db.query(`INSERT INTO employee(first_names,last_names,role_id,managers_ID) VALUES  (?)`,(first_names,last_names,role_id,managers_ID),
+            function(err,results){
+                if(err) throw err
+            })
+            if (addmore=== `yes`){
+>>>>>>> 3c0ee225621e6c2fc83aa0a54457bc9eada79e7f
                 employeeoptions()
             }else{
                 console.log('done')
